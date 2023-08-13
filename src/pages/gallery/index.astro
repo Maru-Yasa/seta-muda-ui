@@ -1,0 +1,32 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Gallery from "../../components/Gallery.astro";
+
+const apiKey = import.meta.env.SECRET_API_KEY;
+const responseImages = (
+  await (
+    await fetch(`${import.meta.env.PUBLIC_API_URL}/galleries?populate=*`, {
+      method: "GET",
+      headers: { Authorization: "Bearer " + apiKey },
+    })
+  ).json()
+)?.data;
+let _images: Array<any> = [];
+responseImages.map((t) => {
+  _images.push({
+    alt: t.attributes?.alt,
+    image: `${import.meta.env.PUBLIC_CMS_URL}${
+      t.attributes?.image.data.attributes?.url
+    }`,
+  });
+});
+---
+
+<MainLayout title="Gallery">
+  <section
+    id="beranda"
+    class="relative py-7 px-5 md:px-24"
+  >
+    <Gallery images={_images} />
+  </section>
+</MainLayout>

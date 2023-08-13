@@ -1,0 +1,28 @@
+---
+const { events } = Astro.props;
+console.log(events);
+
+---
+
+<div class="columns-1 md:columns-2 lg:columns-3 md:space-x-2.5 space-y-5">
+  {
+    events?.map((e) => {
+      return (
+        <div class="relative rounded-xl overflow-hidden text-white">
+          <div class="w-full absolute bottom-0 z-50 px-5 py-3 backdrop-brightness-75">
+            <div class="flex justify-between">
+              <h2 class="text-xl font-semibold">{e.title}</h2>
+              <h2 class="font-bold">{e.year}</h2>
+            </div>
+            <p class="text-sm">
+              {e.description}
+            </p>
+          </div>
+          <div class="w-full relative z-10">
+            <img src={e.image} class="w-full rounded-xl" alt="" />
+          </div>
+        </div>
+      );
+    })
+  }
+</div>

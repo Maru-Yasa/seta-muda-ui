@@ -12,7 +12,7 @@ const responseImages = (
   ).json()
 )?.data;
 let _images: Array<any> = [];
-responseImages.map((t) => {
+responseImages?.map((t) => {
   _images.push({
     alt: t.attributes?.alt,
     image: `${import.meta.env.PUBLIC_CMS_URL}${

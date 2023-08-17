@@ -24,7 +24,7 @@ const responseEvents = (
 
 let teams = [];
 let events = [];
-responseTeams.map((t) => {
+responseTeams?.map((t) => {
   teams.push({
     name: t.attributes?.name,
     position: t.attributes?.position,
@@ -34,7 +34,7 @@ responseTeams.map((t) => {
     }`,
   });
 });
-responseEvents.map((t) => {
+responseEvents?.map((t) => {
   events.push({
     title: t.attributes?.title,
     year: t.attributes?.year,
